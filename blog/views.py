@@ -1,10 +1,28 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+
+posts = [
+    {
+        'author':'paata',
+        'title': 'blog1',
+        'content': '1post',
+        'date_posted': '27.12.24'
+    },
+    {
+        'author':'paata',
+        'title': 'blog2',
+        'content': '1post2',
+        'date_posted': '27.11.24'
+    }
+]
 
 
 def home(req):
-    return HttpResponse("<h1>Blog Home</h1>")
+    context = {
+        'posts': posts
+    }
+    return render(req, 'blog/home.html', context)
 
 
 def about(req):
-    return HttpResponse('<h1>About</h1>')
+    return render(req, 'blog/about.html', {'title': 'About'})
